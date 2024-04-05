@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1>Search Results for "{{ query }}"</h1>
+
+    <form method="get">
+        <input type="text" name="q" value="{{ query }}" placeholder="Search...">
+        <button type="submit">Search</button>
+    </form>
+
+    <ul>
+        {% for product in products %}
+            <li><a href="{% url 'product_detail' product.pk %}">{{ product.name }}</a></li>
+        {% empty %}
+            <li>No product found</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
